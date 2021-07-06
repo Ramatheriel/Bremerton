@@ -58,8 +58,10 @@ public class Bremerton {
 		List<Integer> superior_limit = new ArrayList<Integer>();
 		
 		for (String a : zipCodes) {
+			if(a.length() == 13) {
 				superior_limit.add(Integer.parseInt(a.substring(7, 12)));
 				inferior_limit.add(Integer.parseInt(a.substring(1, 6)));
+			}
 		}
 		return new RangeList(inferior_limit, superior_limit);
 	}
@@ -72,18 +74,23 @@ public class Bremerton {
 		
 		int cont = 0;
 		if(inferiorLimit.size() > 1) {
-			do {
-				if(cont+1 < inferiorLimit.size()) {
-					if(inferiorLimit.get(cont+1) > superiorLimit.get(cont)) {
-						cont++;
+				if(inferiorLimit.get(cont) <= superiorLimit.get(cont)) {
+				do {
+					if(cont+1 < inferiorLimit.size()) {
+						if(inferiorLimit.get(cont+1) > superiorLimit.get(cont)) {
+							cont++;
+						} else {
+							inferiorLimit.remove(cont+1);
+							superiorLimit.remove(cont);
+						}
 					} else {
-						inferiorLimit.remove(cont+1);
-						superiorLimit.remove(cont);
+						cont++;
 					}
-				} else {
-					cont++;
-				}
-			} while(cont < inferiorLimit.size());
+				} while(cont < inferiorLimit.size());
+			} else {
+				inferiorLimit.remove(cont);
+				superiorLimit.remove(cont);
+			}
 		}
 		return new RangeList(inferiorLimit, superiorLimit);
 	}

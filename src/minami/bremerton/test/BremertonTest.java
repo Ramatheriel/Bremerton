@@ -29,4 +29,19 @@ public class BremertonTest {
 	public final void testShowList() {
 		Assert.assertEquals("[[94133-94133], [94200-94399]]", Arrays.toString(Bremerton.showList(Bremerton.seekAndDestroy(Bremerton.splitZipCodes(Bremerton.validateInput(inputString))))));
 	}
+	
+	@Test
+	public final void testMainFailLetters() {
+		Assert.assertEquals("ASDFasfasgfahgsdf", Arrays.toString(Bremerton.showList(Bremerton.seekAndDestroy(Bremerton.splitZipCodes(Bremerton.validateInput(inputString))))));
+	}
+	
+	@Test
+	public final void testMainFailRanges() {
+		Assert.assertEquals("[][][][][]", Arrays.toString(Bremerton.showList(Bremerton.seekAndDestroy(Bremerton.splitZipCodes(Bremerton.validateInput(inputString))))));
+	}
+	
+	@Test
+	public final void testSeekAndDestroyWrongRanges() {
+		Assert.assertEquals("[[90234-89002], [94200-94399]]", Arrays.toString(Bremerton.showList(Bremerton.seekAndDestroy(Bremerton.splitZipCodes(Bremerton.validateInput(inputString))))));
+	}
 }
