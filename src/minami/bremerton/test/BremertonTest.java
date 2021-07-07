@@ -42,6 +42,6 @@ public class BremertonTest {
 	
 	@Test
 	public final void testSeekAndDestroyWrongRanges() {
-		Assert.assertEquals("[[90234-89002], [94200-94399]]", Arrays.toString(Bremerton.showList(Bremerton.seekAndDestroy(Bremerton.splitZipCodes(Bremerton.validateInput(inputString))))));
+		Assert.assertEquals("[[90234-89002], [94200-94399]]", Bremerton.seekAndDestroy(Bremerton.splitZipCodes(Bremerton.validateInput(inputString))).toString());
 	}
 }
